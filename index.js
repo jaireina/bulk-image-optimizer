@@ -2,8 +2,8 @@ const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 
-const srcPath = "test";
-const destPath = "compressed";
+const SRC_PATH = "test";
+const DEST_PATH = "compressed";
 
 function flatten(lists) {
   return lists.reduce((a, b) => a.concat(b), []);
@@ -23,10 +23,10 @@ function getDirectoriesRecursive(srcpath) {
   ];
 }
 
-const directories = getDirectoriesRecursive(srcPath).map((dir) => ({
+const directories = getDirectoriesRecursive(SRC_PATH).map((dir) => ({
   path: dir,
   isDirectory: true,
-  destPath: dir.replace(srcPath, destPath),
+  destPath: dir.replace(SRC_PATH, DEST_PATH),
 }));
 
 let tree = [];
@@ -44,7 +44,7 @@ for (let dir of directories) {
         return {
           path: objPath,
           isDirectory,
-          destPath: objPath.replace(srcPath, destPath),
+          destPath: objPath.replace(SRC_PATH, DEST_PATH),
         };
       })
       .filter((obj) => obj),
