@@ -1,8 +1,9 @@
 const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
+const { writeError } = require("./log");
 
-const SRC_PATH = "test";
+const SRC_PATH = "uploads";
 const DEST_PATH = "compressed";
 
 function flatten(lists) {
@@ -69,6 +70,7 @@ async function optimize() {
     } catch (e) {
       console.log(i, "error", obj.destPath);
       console.error(e);
+      writeError(obj.path);
     }
   }
 
